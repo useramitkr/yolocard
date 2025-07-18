@@ -20,7 +20,7 @@ const Card: React.FC = () => {
     const [isFrozen, setIsFrozen] = useState<boolean>(false);
     const [showCVV, setShowCVV] = useState<boolean>(false);
     const fadeAnim = useState(new Animated.Value(1))[0];
-    const iceAnim = useState(new Animated.Value(0))[0];
+    const iceAnim = useState(new Animated.Value(0.1))[0]; // Start with low opacity
 
     const cardNumber: string = faker.finance.creditCardNumber('####-####-####-####');
     const expiry: string = faker.date
@@ -30,24 +30,17 @@ const Card: React.FC = () => {
 
     useEffect(() => {
         if (isFrozen) {
-            // Start ice/cloud animation when frozen
-            Animated.loop(
-                Animated.sequence([
-                    Animated.timing(iceAnim, {
-                        toValue: 1,
-                        duration: 1000,
-                        useNativeDriver: true,
-                    }),
-                    Animated.timing(iceAnim, {
-                        toValue: 0.6,
-                        duration: 1000,
-                        useNativeDriver: true,
-                    }),
-                ])
-            ).start();
+            Animated.timing(iceAnim, {
+                toValue: 1, // Full opacity when frozen
+                duration: 500,
+                useNativeDriver: true,
+            }).start();
         } else {
-            // Reset animation when unfrozen
-            iceAnim.setValue(0);
+            Animated.timing(iceAnim, {
+                toValue: 0.1, // Low opacity when unfrozen
+                duration: 500,
+                useNativeDriver: true,
+            }).start();
         }
     }, [isFrozen, iceAnim]);
 
@@ -74,29 +67,15 @@ const Card: React.FC = () => {
             <View style={styles.cardZone}>
                 <Animated.View style={[styles.cardBlock, { opacity: fadeAnim }]}>
                     <View style={[styles.cardSec, isFrozen && styles.cardFrozen]}>
-                        {/* Ice/Cloud Overlay */}
-                        {isFrozen && (
-                            <Animated.Image
-                                source={iceCloudEffect}
-                                style={[
-                                    styles.freezeOverlay,
-                                    {
-                                        opacity: iceAnim.interpolate({
-                                            inputRange: [0, 1],
-                                            outputRange: [0.2, 0.4],
-                                        }),
-                                        transform: [
-                                            {
-                                                scale: iceAnim.interpolate({
-                                                    inputRange: [0, 1],
-                                                    outputRange: [1, 1.05],
-                                                }),
-                                            },
-                                        ],
-                                    },
-                                ]}
-                            />
-                        )}
+                        <Animated.Image
+                            source={iceCloudEffect}
+                            style={[
+                                styles.backgroundImage,
+                                {
+                                    opacity: iceAnim,
+                                },
+                            ]}
+                        />
 
                         {/* Card Content - Hidden when frozen */}
                         {!isFrozen && (
@@ -226,15 +205,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 310,
         borderWidth: 1,
-        borderColor: '#1f1f1fff',
         borderRadius: 20,
-        overflow: 'hidden', 
+        overflow: 'hidden',
+        backgroundColor: '#1f1f1fff', 
     },
     cardFrozen: {
-        borderColor: '#A90808',
-        backgroundColor: '#E6F3FA', 
+        // borderColor: '#A90808',
     },
-    freezeOverlay: {
+    backgroundImage: {
         position: 'absolute',
         top: 0,
         left: 0,
@@ -242,7 +220,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: '100%',
         height: '100%',
-        zIndex: 1,
+        zIndex: 0, 
     },
     upperImg: {
         flexDirection: 'row',
