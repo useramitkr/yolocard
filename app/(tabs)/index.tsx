@@ -1,75 +1,81 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import Card from '@/components/yoloUi/card';
+import Pay from '@/components/yoloUi/pay';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function HomeScreen() {
+
+  const [view, setView] = useState(1)
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.titleText}>select payment mode</Text>
+      <Text style={styles.descriptionText}>choose your preferred payment method to make payment.</Text>
+
+      {/* swipable buttons */}
+      <View style={styles.paymentModeSelector}>
+        <Pressable style={[styles.swipableButton, view === 0 ? styles.activeBtn : null]} onPress={() => setView(0)}>
+          <Text style={[styles.swipableBtnText, view === 0 ? styles.activeBtnText: null]}>pay</Text>
+        </Pressable>
+        <Pressable style={[styles.swipableButton, view === 1 ? styles.activeBtn : null]} onPress={() => setView(1)}>
+          <Text style={[styles.swipableBtnText, view === 1 ? styles.activeBtnText: null]}>card</Text>
+        </Pressable>
+      </View>
+
+      {view === 0 && <Pay />}
+      {view === 1 && <Card />}
+
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    backgroundColor: '#0D0D0D',
+    width: '100%',
+    height: '100%',
+    paddingVertical: 25,
+    paddingHorizontal: 20,
+  },
+  titleText: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    fontWeight: 600,
+    marginTop: 50,
+  },
+  descriptionText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: 400,
+    marginTop: 15,
+    letterSpacing: -0.17,
+    opacity: 0.5,
+  },
+  paymentModeSelector: {
+    marginVertical: 30,
     flexDirection: 'row',
-    alignItems: 'center',
     gap: 8,
+    flexWrap: 'wrap'
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  swipableButton: {
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: '#FFFFFF',
+    borderRadius: 50,
+    padding: 8,
+    alignSelf: 'flex-start',
+
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  swipableBtnText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    paddingHorizontal: 16,
+  },
+  activeBtn: {
+    borderColor: '#A90808',
+  },
+  activeBtnText: {
+    color: '#A90808',
   },
 });
