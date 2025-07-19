@@ -20,7 +20,7 @@ const Card: React.FC = () => {
     const [isFrozen, setIsFrozen] = useState<boolean>(false);
     const [showCVV, setShowCVV] = useState<boolean>(false);
     const fadeAnim = useState(new Animated.Value(1))[0];
-    const iceAnim = useState(new Animated.Value(0.1))[0]; // Start with low opacity
+    const iceAnim = useState(new Animated.Value(0.1))[0]; 
 
     const cardNumber: string = faker.finance.creditCardNumber('####-####-####-####');
     const expiry: string = faker.date
@@ -31,13 +31,13 @@ const Card: React.FC = () => {
     useEffect(() => {
         if (isFrozen) {
             Animated.timing(iceAnim, {
-                toValue: 1, // Full opacity when frozen
+                toValue: 1, 
                 duration: 500,
                 useNativeDriver: true,
             }).start();
         } else {
             Animated.timing(iceAnim, {
-                toValue: 0.1, // Low opacity when unfrozen
+                toValue: 0.1,
                 duration: 500,
                 useNativeDriver: true,
             }).start();
@@ -181,165 +181,173 @@ const Card: React.FC = () => {
 export default Card;
 
 const styles = StyleSheet.create({
-    cardContainer: {
-        marginTop: 30,
-    },
-    cardTitle: {
-        textTransform: 'uppercase',
-        color: '#FFFFFF',
-        opacity: 0.5,
-        fontSize: 12,
-        marginBottom: 10,
-    },
-    cardZone: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: '60%',
-        height: 300,
-    },
-    cardBlock: {
-        width: '100%',
-        marginTop: 25,
-    },
-    cardSec: {
-        width: '100%',
-        height: 310,
-        borderWidth: 1,
-        borderRadius: 20,
-        overflow: 'hidden',
-        backgroundColor: '#1f1f1fff', 
-    },
-    cardFrozen: {
-        // borderColor: '#A90808',
-    },
-    backgroundImage: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0, 
-    },
-    upperImg: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 23.29,
-        paddingVertical: 10,
-    },
-    cardImage: {
-        width: 48.44,
-        height: 15.29,
-    },
-    cardImageBank: {
-        width: 48.37,
-        height: 20.99,
-    },
-    cardDetails: {
-        marginTop: 30,
-        flexDirection: 'row',
-        gap: 40,
-        paddingHorizontal: 23.29,
-    },
-    cardNumers: {
-        flexDirection: 'column',
-        gap: 8,
-    },
-    cardDigitGroup: {
-        flexDirection: 'row',
-        marginBottom: 6,
-    },
-    cardDigit: {
-        color: '#FFFFFF',
-        fontSize: 20,
-        textAlign: 'center',
-        width: 12,
-    },
-    expiryAndCvv: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        flex: 1,
-    },
-    expiry: {
-        fontSize: 10,
-        color: '#9f9f9fff',
-    },
-    expiryDate: {
-        color: '#FFFFFF',
-        fontSize: 20,
-        paddingVertical: 3,
-    },
-    cvvContainer: {
-        marginTop: 20,
-    },
-    cvv: {
-        color: '#ffffff',
-        fontSize: 10,
-        opacity: 0.6,
-        marginBottom: 5,
-    },
-    cvvRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
-    },
-    cvvMaskedText: {
-        color: '#FFFFFF',
-        fontSize: 20,
-        opacity: 0.5,
-    },
-    eyeIcon: {
-        width: 20,
-        height: 20,
-        tintColor: '#A90808',
-    },
-    cvvText: {
-        color: '#FFFFFF',
-        fontSize: 20,
-    },
-    copyButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 5,
-        marginTop: 15,
-        paddingHorizontal: 23.29,
-    },
-    copyText: {
-        color: '#A90808',
-    },
-    rupayCard: {
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        padding: 15,
-    },
-    cardFBtn: {
-        width: 70,
-        marginLeft: 10,
-        height: 70,
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 5,
-    },
-    snowImage: {
-        width: 16,
-        height: 18,
-        padding: 10,
-    },
-    imgRound: {
-        borderRadius: 50,
-        paddingVertical: 20,
-        paddingHorizontal: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderTopWidth: 1,
-        borderRightWidth: 1,
-        borderLeftWidth: 1,
-        borderColor: '#242424ff',
-    },
-    imgRoundActive: {
-        borderColor: '#A90808',
-    },
+  cardContainer: {
+    marginTop: 30,
+  },
+  cardTitle: {
+    textTransform: 'uppercase',
+    color: '#FFFFFF',
+    opacity: 0.5,
+    fontSize: 12,
+    marginBottom: 10,
+    fontFamily: 'Poppins',
+  },
+  cardZone: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '60%',
+    height: 300,
+  },
+  cardBlock: {
+    width: '100%',
+    marginTop: 25,
+  },
+  cardSec: {
+    width: '100%',
+    height: 310,
+    borderWidth: 1,
+    borderRadius: 20,
+    overflow: 'hidden',
+    backgroundColor: '#1f1f1fff',
+  },
+  cardFrozen: {
+    // borderColor: '#A90808',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 0,
+  },
+  upperImg: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 23.29,
+    paddingVertical: 10,
+  },
+  cardImage: {
+    width: 48.44,
+    height: 15.29,
+  },
+  cardImageBank: {
+    width: 48.37,
+    height: 20.99,
+  },
+  cardDetails: {
+    marginTop: 30,
+    flexDirection: 'row',
+    gap: 40,
+    paddingHorizontal: 23.29,
+  },
+  cardNumers: {
+    flexDirection: 'column',
+    gap: 8,
+  },
+  cardDigitGroup: {
+    flexDirection: 'row',
+    marginBottom: 6,
+  },
+  cardDigit: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    textAlign: 'center',
+    width: 12,
+    fontFamily: 'NovaSquare', 
+  },
+  expiryAndCvv: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    flex: 1,
+  },
+  expiry: {
+    fontSize: 10,
+    color: '#9f9f9fff',
+    fontFamily: 'Poppins',
+  },
+  expiryDate: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    paddingVertical: 3,
+    fontFamily: 'Poppins',
+  },
+  cvvContainer: {
+    marginTop: 20,
+  },
+  cvv: {
+    color: '#ffffff',
+    fontSize: 10,
+    opacity: 0.6,
+    marginBottom: 5,
+    fontFamily: 'Poppins',
+  },
+  cvvRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  cvvMaskedText: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    opacity: 0.5,
+    fontFamily: 'Poppins',
+  },
+  cvvText: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontFamily: 'Poppins',
+  },
+  eyeIcon: {
+    width: 20,
+    height: 20,
+    tintColor: '#A90808',
+  },
+  copyButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    marginTop: 15,
+    paddingHorizontal: 23.29,
+  },
+  copyText: {
+    color: '#A90808',
+    fontFamily: 'Poppins',
+  },
+  rupayCard: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    padding: 15,
+  },
+  cardFBtn: {
+    width: 70,
+    marginLeft: 10,
+    height: 70,
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 5,
+  },
+  snowImage: {
+    width: 16,
+    height: 18,
+    padding: 10,
+  },
+  imgRound: {
+    borderRadius: 50,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderColor: '#242424ff',
+  },
+  imgRoundActive: {
+    borderColor: '#A90808',
+  },
 });

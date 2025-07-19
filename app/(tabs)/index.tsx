@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '600',
     marginTop: 50,
+    fontFamily: 'Poppins',
   },
   descriptionText: {
     color: '#FFFFFF',
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     letterSpacing: -0.17,
     opacity: 0.5,
+    fontFamily: 'Poppins',
   },
   paymentModeSelector: {
     marginVertical: 30,
@@ -101,11 +103,13 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     paddingHorizontal: 16,
+    fontFamily: 'Poppins',
   },
   activeBtn: {
     borderColor: '#A90808',
   },
   activeBtnText: {
     color: '#A90808',
+    fontFamily: 'Poppins',
   },
 });
