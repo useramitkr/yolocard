@@ -1,6 +1,18 @@
-# Welcome to your Expo app 👋
+# 💳 YoloCard – Dabit/Credit Card UI
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+YoloCard is a React Native app (built using **Expo Router**) designed with freeze/unfreeze animation and real-time card data. This was developed as part of a UI assessment task.
+Demo Link: https://youtube.com/shorts/gMCrYGrypZo?si=QZq2D2XVG7oBfgCp 
+
+## 🚀 Features
+
+- 📱 Clean and responsive UI layout
+- 🎨 Custom bottom tab navigator based on the design
+- ❄️ Freeze animation on card details (blur effect)
+- 🧪 Front card displays fake but realistic data (number, expiry, cvv)
+- 🤖 Random data generated via `@faker-js/faker`
+- 🔤 Global font: **Poppins**, Custom font: **NovaSquare-Regular**
+- 🌙 StatusBar and Splash screen styled for dark mode
+- 🔄 Reusable components for easy state switching (`Pay`, `Card`)
 
 ## Get started
 
